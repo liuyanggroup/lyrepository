@@ -1,0 +1,26 @@
+FUELQUOTAID->BM_GY_FUELORGSTDGD.FUELQUOTAID;
+BUSTID->BM_GY_FUELORGSTDGD.BUSTID;
+ROUTEID->BM_GY_FUELORGSTDGD.ROUTEID;
+FULETYPE->BM_GY_FUELORGSTDGD.FULETYPE;
+
+CATEGORYNAME->v_categoryname;
+REFSTANDARD->v_refstandard;
+BUSTNAME->v_bustname;
+CATEGORY->v_category;
+ROUTENAME->v_routename;
+FULLTYPENAME->v_fulltypename
+
+ git add readme.txt
+ git commit
+	-m 可加入说明
+	
+	
+初始化一个Git仓库，使用
+	git init命令。
+
+添加文件到Git仓库，分两步：
+	git add <file>，注意，可反复多次使用，添加多个文件；
+	git commit -m <message>，完成。
+
+git status命令可以让我们时刻掌握仓库当前的状态
+git diff顾名思义就是查看difference
