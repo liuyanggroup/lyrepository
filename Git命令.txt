@@ -1,11 +1,11 @@
-工作区-add-暂存区-commit-本地仓库-push-远程仓库-clone-本地仓库2-checkout-工作区
+工作区-add-暂存区-commit-本地仓库-push/pull-远程仓库(githup)-clone/push-本地仓库2-checkout-工作区
  
 空格：下一页。b：上一页。q：退出
-(HEAD)指向的版本就是当前版本
+HEAD：指向当前所在分支的版本（切换那个版本指向哪个版本。）。当前commit的引用。
+master：主干分支。git初始化后，会自动产生master分支 即主干。
+origin/master:指向服务器某个branch的指针
 remote远程服务器端
 origin起点开端。就是指向某一个远程repository的指针
-服务器master控制主人。指向服务器某个branch的指针
-本地master就是指向刚刚从remote server传到本地的副本branch。
 branch分支。
 detached分离。
 merger合并
@@ -62,12 +62,22 @@ merger合并
 	--soft:  移动本地库HEAD指针。
 
 Git分支：git init初始化后，会自动产生master分支 即主干
-	查看分支：git branch -v
+查看分支：git branch
+创建分支：git branch <name>
+切换分支：git checkout <name>
+创建+切换分支：git checkout -b <name>
+合并某分支到当前分支：git merge <name>
+删除分支：git branch -d <name>
+
+	查看分支：git branch [-v]
 	创建分支：git branch [分支名] 
 	切换分支：git checkout [分支名]
-	合并分支：1、先切换到接受修改的分支上(增加其他分支修改的新内容)。
+	创建+切换分支：git checkout -b [分支名]
+	删除分支：git branch -d [分支名]
+	合并分支：git merge [分支名]
+				1、先切换到接受修改的分支上(增加其他分支修改的新内容)。
 					git checkout [分支M]：切换到分支M上。
-			  2、执行merge合并命令。git merger [修改的有新内容的分支]
+				2、执行merge合并命令。git merger [修改的有新内容的分支]
 					git merge [分支C]:将分支C的内容合并到分支M上。分支M包含自己本身即分支C的全部内容。
 	解决冲突：有多个分支修改了同文件同位置为不同内容。合并时就会提示有冲突，需要人工修复冲突。
 			  表现及修复：
@@ -87,8 +97,11 @@ Git分支：git init初始化后，会自动产生master分支 即主干
 		
 
 添加远程github库
-	$ git remote add origin https://github.com/18266643599/repository.git
-	$ git push -u origin master
+	git remote -v：查看远程库
+		origin  https://github.com/18266643599/repository.git (fetch)【取回】
+		origin  https://github.com/18266643599/repository.git (push) 【推送】
+	git remote add [origin别名] https://github.com/18266643599/repository.git
+	git push -u [origin别名] master
 
 克隆到本地：配置公钥
 	cd ~/.ssh
@@ -103,16 +116,9 @@ Git分支：git init初始化后，会自动产生master分支 即主干
 	$ git clone git@github.com:18266643599/repository.git   
 
 	git push 命令，实际上是把当前分支master推送到远程github
-	git push origin master推送最新修改
+	git push origin master：将master分支推送给别名为origin的远程库
 
-主分支，即master分支。HEAD指向的就是当前分支
 
-查看分支：git branch
-创建分支：git branch <name>
-切换分支：git checkout <name>
-创建+切换分支：git checkout -b <name>
-合并某分支到当前分支：git merge <name>
-删除分支：git branch -d <name>
 
 
 
