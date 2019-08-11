@@ -8,6 +8,7 @@ origin起点开端。就是指向某一个远程repository的指针
 本地master就是指向刚刚从remote server传到本地的副本branch。
 branch分支。
 detached分离。
+merger合并
 
 进入想要创建工作目录的路径，创建一个目录做为本地版本仓库。
 	mkdir repositoryname
@@ -60,13 +61,25 @@ detached分离。
 	--mixed：移动本地库HEAD指针。重置缓存区。
 	--soft:  移动本地库HEAD指针。
 
-Git分支
-	git branch -v：查看分支
-	git branch hot_fix：创建一个叫hot_fix的分支
-	git checkout master：切换到master分支。
+Git分支：git init初始化后，会自动产生master分支 即主干
+	查看分支：git branch -v
+	创建分支：git branch [分支名] 
+	切换分支：git checkout [分支名]
+	合并分支：1、先切换到接受修改的分支上(增加其他分支修改的新内容)。
+					git checkout [分支M]：切换到分支M上。
+			  2、执行merge合并命令。git merger [修改的有新内容的分支]
+					git merge [分支C]:将分支C的内容合并到分支M上。分支M包含自己本身即分支C的全部内容。
+	解决冲突：有多个分支修改了同文件同位置为不同内容。合并时就会提示有冲突，需要人工修复冲突。
+			  表现及修复：
+					<<<<< HEAD       当前分支，冲突开始位置。
+					CONTENT1.....
+					=====            两分支冲突内容分隔符【当前分支结束，另一分支开始】。
+					CONTENT2.....
+					>>>>> hot_fix    另一分支，冲突结束位置。
+				删除冲突提示标记符【<、=、>】，确定保留或删除或合并冲突行操作。	
+			    修复后使用 git add [冲突文件名] 标记冲突已解决，再使用 git commit -m<msg>，不加文件名。               
+					
 
-
-	init 初始化后产生master分支(主干)
 	o---o---o-----------o-------o--o---o(master)
 		├ o-hot_fix 热修复bug-o-┘  │    (branch)
 		├ o-feature_manager-----o--┤    (branch)
